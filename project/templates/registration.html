@@ -1,0 +1,28 @@
+{% extends 'template.html' %}
+{% block body %}
+<form method="post" class="card shadow w-25 position-absolute top-50 start-50 translate-middle text-center">
+    {{ form.csrf_token }}
+    <div class="card-body">
+        <h2 class="card-title my-4">Join Today!</h2>
+        <div class="form-floating mb-2">
+            {{ form.username(class="form-control", placeholder="example@mail.com") }}
+            {{ form.username.label }}
+        </div>
+        <div class="form-floating mb-2">
+            {{ form.password(class="form-control", placeholder="example@mail.com") }}
+            {{ form.password.label }}
+        </div>
+        <div class="form-floating mb-2">
+            {{ form.confirm_password(class="form-control", placeholder="example@mail.com") }}
+            {{ form.confirm_password.label }}
+        </div>
+        <div class="form-floating my-3">
+            {{ form.submit(class="btn btn-primary") }}
+            <span class="ms-4">
+                {{ form.remember_me }}
+                {{ form.remember_me.label }}
+            </span>
+        </div>
+    </div>
+</form>
+{% endblock %}
