@@ -1,28 +1,48 @@
 {% extends 'template.html' %}
 {% block body %}
-<form method="post" class="card shadow w-25 position-absolute top-50 start-50 translate-middle text-center">
-    {{ form.csrf_token }}
-    <div class="card-body">
-        <h2 class="card-title my-4">Join Today!</h2>
-        <div class="form-floating mb-2">
-            {{ form.username(class="form-control", placeholder="example@mail.com") }}
-            {{ form.username.label }}
-        </div>
-        <div class="form-floating mb-2">
-            {{ form.password(class="form-control", placeholder="example@mail.com") }}
-            {{ form.password.label }}
-        </div>
-        <div class="form-floating mb-2">
-            {{ form.confirm_password(class="form-control", placeholder="example@mail.com") }}
-            {{ form.confirm_password.label }}
-        </div>
-        <div class="form-floating my-3">
-            {{ form.submit(class="btn btn-primary") }}
-            <span class="ms-4">
-                {{ form.remember_me }}
-                {{ form.remember_me.label }}
-            </span>
-        </div>
+<div class="card border-secondary shadow w-25 position-absolute top-50 start-50 translate-middle p-5">
+    <div class="card-title text-center mb-3">
+        <h2>Join Today!</h2>
+        <hr class="border border-secondary opacity-75">
     </div>
-</form>
+    <form method="post">
+        {{ form.csrf_token }}
+        <div class="row g-2">
+            <div class="col-12">
+                <div class="form-floating">
+                    {{ form.username(class="form-control", placeholder="example_name") }}
+                    {{ form.username.label }}
+                </div>
+            </div>
+            <div class="col-12">
+                <div class="form-floating">
+                    {{ form.email(class="form-control", placeholder="example@mail.com") }}
+                    {{ form.email.label }}
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="form-floating">
+                    {{ form.password(class="form-control", placeholder="example@mail.com") }}
+                    {{ form.password.label }}
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="form-floating">
+                    {{ form.confirm_password(class="form-control", placeholder="example@mail.com") }}
+                    {{ form.confirm_password.label }}
+                </div>
+            </div>
+        </div>
+
+        <div class="form-floating mt-4 mb-3">
+            {{ form.submit(class="btn btn-primary btn-md w-100") }}
+        </div>
+
+        <div class="form-check form-check-reverse me-4">
+                {{ form.remember_me(class="form-check-input") }}
+                {{ form.remember_me.label(class="form-check-label") }}
+        </div>
+
+    </form>
+</div>
 {% endblock %}

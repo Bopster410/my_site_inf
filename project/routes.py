@@ -8,8 +8,9 @@ def registration():
     form = RegistrationForm()
     username = form.username.data
     password = form.password.data
-    if username:
-        db.session.add(User(username=username,  password=password))
+    email = form.email.data
+    if all((username, password, email)):
+        db.session.add(User(username=username,  password=password, email=email))
         db.session.commit()
     return render_template('registration.html', form=form)
 
