@@ -1,17 +1,18 @@
 from project import app, db
 from project.forms import RegistrationForm, LogInForm
 from project.models import User
-from flask import render_template
+from flask import render_template, redirect, url_for
 
 @app.route('/reg', methods=['GET', 'POST'])
 def registration():
     form = RegistrationForm()
-    username = form.username.data
-    password = form.password.data
-    email = form.email.data
-    if all((username, password, email)):
+    if form.validate_on_submit():
+        username = form.username.data
+        password = form.password.data
+        email = form.email.data
         db.session.add(User(username=username,  password=password, email=email))
         db.session.commit()
+        redirect(url_for('main_page'))
     return render_template('registration.html', form=form)
 
 @app.route('/log_in', methods=['GET', 'POST'])
