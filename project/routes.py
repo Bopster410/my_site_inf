@@ -36,4 +36,4 @@ def log_out():
 
 @app.route('/')
 def main_page():
-    return render_template('template.html', with_navbar=True)
+    return render_template('main_page.html', with_navbar=True)

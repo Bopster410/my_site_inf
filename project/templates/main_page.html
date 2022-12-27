@@ -1,0 +1,34 @@
+{% extends 'template.html' %}
+{% block body %}
+<!-- TODO add variables for navbar and slides height -->
+<div id="MainCarousel" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-inner bg-dark">
+        <div class="carousel-indicators">
+            <button type="button" data-bs-target="#MainCarousel" data-bs-slide-to="0" aria-label="Slide 1" class="active" aria-current="true"></button>
+            <button type="button" data-bs-target="#MainCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+            <button type="button" data-bs-target="#MainCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
+        </div>
+        <div class="carousel-item active">
+            <div style="min-height:var(--carousel-height);">
+                <div class="carousel-caption d-md-block">
+                    <h2>epic</h2>
+                </div>
+            </div>
+        </div>
+        <div class="carousel-item">
+            <div style="min-height:var(--carousel-height);">
+                <div class="carousel-caption d-md-block">
+                    <h2>epic 2</h2>
+                </div>
+            </div>
+        </div>
+        <div class="carousel-item">
+            <div style="min-height:var(--carousel-height);">
+                <div class="carousel-caption d-md-block">
+                    <h2>epic 3</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
