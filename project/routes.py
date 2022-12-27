@@ -22,7 +22,7 @@ def log_in():
     if form.validate_on_submit():
         user = db.session.execute(db.select(User).where(User.email == form.email.data)).scalars().first()
         if user and  bcrypt.check_password_hash(user.password, form.password.data):
-            login_user(user, remember=form.remember_me.data) #TODO remember me 
+            login_user(user, remember=form.remember_me.data)
             return redirect(url_for('main_page'))
     return render_template('log_in.html', form=form)
 
