@@ -1,7 +1,7 @@
 from project import app, db, bcrypt
 from project.forms import RegistrationForm, LogInForm
 from project.models import User
-from flask import render_template, redirect, url_for, flash
+from flask import render_template, redirect, url_for, flash, request
 from flask_login import login_user, current_user, logout_user, login_required
 
 @app.route('/reg', methods=['GET', 'POST'])
@@ -24,7 +24,11 @@ def log_in():
         user = db.session.execute(db.select(User).where(User.email == form.email.data)).scalars().first()
         if user and  bcrypt.check_password_hash(user.password, form.password.data):
             login_user(user, remember=form.remember_me.data)
-            return redirect(url_for('main_page'))
+            # next_page exists if user gets redirected
+            # trying to get to the profile page being logged out
+            next_page = request.args.get('next')
+            # user will be forwarded to this next_page authentication
+            return redirect(next_page if next_page else url_for('main_page')) 
         else:
             flash('Check your email and password.', 'danger')
     return render_template('log_in.html', form=form)
