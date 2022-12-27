@@ -9,4 +9,12 @@ class User(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(20), nullable=False, unique=True)
     email = db.Column(db.String(40), nullable=False, unique=True)
+    image = db.Column(db.String(20)) # TODO default and nullable
     password = db.Column(db.String(20), nullable=False)
+
+class Product(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    title = db.Column(db.String(20), nullable=False, unique=True)
+    description = db.Column(db.String(100), nullable=False)
+    image = db.Column(db.String(20)) # TODO default and nullable
+    price = db.Column(db.Integer, nullable=False)
