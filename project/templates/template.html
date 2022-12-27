@@ -29,26 +29,30 @@
                     <a href="#" class="nav-link">test</a>
                 </li>
             </ul>
-            <!-- <div class="navbar-nav dropdown">
-                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">Profile</a>
-                <ul class="dropdown-menu">
-                    <li>
-                        <a href="#" class="dropdown-item">epic</a>
-                        <a href="#" class="dropdown-item">cccc</a>
+            {% if current_user.is_authenticated %}
+                <div class="navbar-nav dropdown">
+                    <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">Profile</a>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <a href="#" class="dropdown-item">epic</a>
+                            <a href="#" class="dropdown-item">cccc</a>
+                            <a href="{{ url_for('log_out') }}" class="dropdown-item">Log Out</a>
+                        </li>
+                    </ul>
+                </div>
+            {% else %}
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a href="{{ url_for('log_in') }}" class="nav-link">Log In</a>
+                    </li>
+                    <li class="nav-item py-1 mx-2">
+                        <div class="vr text-white h-100"></div>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ url_for('registration') }}" class="nav-link">Sign Up</a>
                     </li>
                 </ul>
-            </div> -->
-            <ul class="navbar-nav">
-                <li class="nav-item">
-                    <a href="#" class="nav-link">Log In</a>
-                </li>
-                <li class="nav-item py-1 mx-2">
-                    <div class="vr text-white h-100"></div>
-                </li>
-                <li class="nav-item">
-                    <a href="#" class="nav-link">Sign Up</a>
-                </li>
-            </ul>
+            {% endif %}
         </div>
     </nav>
 

@@ -2,7 +2,7 @@ from project import app, db, bcrypt
 from project.forms import RegistrationForm, LogInForm
 from project.models import User
 from flask import render_template, redirect, url_for, flash
-from flask_login import login_user
+from flask_login import login_user, current_user, logout_user
 
 @app.route('/reg', methods=['GET', 'POST'])
 def registration():
@@ -28,6 +28,11 @@ def log_in():
         else:
             flash('Check your email and password.', 'danger')
     return render_template('log_in.html', form=form)
+
+@app.route('/log_out')
+def log_out():
+    logout_user()
+    return redirect(url_for('main_page'))
 
 @app.route('/')
 def main_page():
