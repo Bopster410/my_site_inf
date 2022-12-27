@@ -15,10 +15,10 @@
         {% if current_user.is_authenticated %}
             <div class="navbar-nav dropdown">
                 <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"
-                    aria-expanded="false">Profile</a>
+                    aria-expanded="false">Account</a>
                 <ul class="dropdown-menu">
                     <li>
-                        <a href="#" class="dropdown-item">epic</a>
+                        <a href="{{ url_for('account') }}" class="dropdown-item">Profile page</a>
                         <a href="#" class="dropdown-item">cccc</a>
                         <a href="{{ url_for('log_out') }}" class="dropdown-item">Log Out</a>
                     </li>
