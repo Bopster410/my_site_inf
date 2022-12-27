@@ -22,6 +22,11 @@
             </div>
         </div>
 
+        <div class="form-check form-check-reverse me-4">
+                {{ form.remember_me(class="form-check-input") }}
+                {{ form.remember_me.label(class="form-check-label") }}
+        </div>
+
         <div class="mt-4">
             {{ form.log_in(class="btn btn-primary btn-md w-100")}}
         </div>
