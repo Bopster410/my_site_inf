@@ -13,6 +13,15 @@
             --carousel-height: calc(100vh - var(--navbar-height));
         }
 
+        html::-webkit-scrollbar {
+            display: none;
+        }
+
+        html {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
         .main_car_img {
             object-fit: cover;
             object-position: top;
