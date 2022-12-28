@@ -1,5 +1,5 @@
 from project import app, db, bcrypt
-from project.forms import RegistrationForm, LogInForm, CommentForm
+from project.forms import RegistrationForm, LogInForm, CommentForm, UpdateAccountForm
 from project.models import User, Product, Comment
 from flask import render_template, redirect, url_for, flash, request
 from flask_login import login_user, current_user, logout_user, login_required
@@ -41,8 +41,9 @@ def log_out():
 @app.route('/account')
 @login_required
 def account():
+    form = UpdateAccountForm()
     image_file = url_for('static', filename='profile_pics/' + current_user.image)
-    return render_template('account.html', image_file=image_file, with_navbar=True)
+    return render_template('account.html', image_file=image_file, form=form, with_navbar=True)
 
 @app.route('/catalog')
 def catalog():
