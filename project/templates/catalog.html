@@ -26,5 +26,12 @@
             </div>
         {% endfor %}
     </div>
+    {% for page_num in products.iter_pages() %}
+        {% if page_num %}
+            <a class="btn btn-dark" href="{{ url_for('catalog', page=page_num) }}">{{ page_num }}</a>
+        {% else %}
+            ...
+        {% endif %}
+    {% endfor %}
 </div>
 {% endblock %}

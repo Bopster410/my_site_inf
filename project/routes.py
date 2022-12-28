@@ -45,7 +45,8 @@ def account():
 
 @app.route('/catalog')
 def catalog():
-    products = db.session.execute(db.select(Product)).scalars().all()
+    page = request.args.get('page', 1, type=int)
+    products = db.paginate(db.select(Product), per_page=2, page=page)
     # TODO if no products exist then another page
     return render_template('catalog.html', products=products, with_navbar=True)
 
