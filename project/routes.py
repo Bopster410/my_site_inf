@@ -1,6 +1,6 @@
 from project import app, db, bcrypt
 from project.forms import RegistrationForm, LogInForm
-from project.models import User
+from project.models import User, Product
 from flask import render_template, redirect, url_for, flash, request
 from flask_login import login_user, current_user, logout_user, login_required
 
@@ -42,6 +42,12 @@ def log_out():
 @login_required
 def account():
     return render_template('account.html', with_navbar=True)
+
+@app.route('/catalog')
+def catalog():
+    products = db.session.execute(db.select(Product)).scalars().all()
+    # TODO if no products exist then another page
+    return render_template('catalog.html', products=products, with_navbar=True)
 
 @app.route('/')
 def main_page():

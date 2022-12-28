@@ -1,0 +1,30 @@
+{% extends 'template.html' %}
+{% block body %}
+<div class="container">
+    <h2 class="m-4 text-center">Pick your favorite!</h2>
+    <div class="vstack gap-3">
+        {% for product in products %}
+            <div class="card">
+                <div class="row g-0">
+                    <div class="col-md-2">
+                        <!-- TODO special image for every product -->
+                        <img src="../static/shawarma1.png" class="img-fluid border-end" alt="epic image"> 
+                    </div>
+                    <div class="col-md-8">
+                        <div class="card-body">
+                            <h3 class="card-title mb-4">{{ product.title }}</h3>
+                            <p class="card-text">{{ product.description }}</p>
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="card-footer text-center h-100">
+                            <h4 class="card-title mt-5 mb-4">{{ product.price }}</h4>
+                            <button type="button" class="btn btn-dark btn-lg mb-3 w-100">Add to cart</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

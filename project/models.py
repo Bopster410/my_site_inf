@@ -16,5 +16,5 @@ class Product(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(20), nullable=False, unique=True)
     description = db.Column(db.String(100), nullable=False)
-    image = db.Column(db.String(20)) # TODO default and nullable
+    image = db.Column(db.String(20), default='../static/shawarma1.png') # TODO default and nullable
     price = db.Column(db.Integer, nullable=False)
