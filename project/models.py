@@ -18,3 +18,9 @@ class Product(db.Model):
     description = db.Column(db.String(100), nullable=False)
     image = db.Column(db.String(20), nullable=False, default='shawarma1.png') # TODO default and nullable
     price = db.Column(db.Integer, nullable=False)
+    comments = db.relationship('Comment', backref='product', lazy=True)
+
+class Comment(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    rate = db.Column(db.Integer, nullable=False)
+    text = db.Column(db.String(100), nullable=False)
