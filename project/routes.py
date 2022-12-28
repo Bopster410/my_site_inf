@@ -41,7 +41,8 @@ def log_out():
 @app.route('/account')
 @login_required
 def account():
-    return render_template('account.html', with_navbar=True)
+    image_file = url_for('static', filename='profile_pics/' + current_user.image)
+    return render_template('account.html', image_file=image_file, with_navbar=True)
 
 @app.route('/catalog')
 def catalog():
