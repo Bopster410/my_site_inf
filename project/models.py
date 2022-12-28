@@ -24,3 +24,4 @@ class Comment(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     rate = db.Column(db.Integer, nullable=False)
     text = db.Column(db.String(100), nullable=False)
+    product_id = db.Column(db.Integer, db.ForeignKey('product.id'), nullable=False)

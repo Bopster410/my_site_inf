@@ -1,6 +1,6 @@
 from project import app, db, bcrypt
 from project.forms import RegistrationForm, LogInForm, CommentForm
-from project.models import User, Product
+from project.models import User, Product, Comment
 from flask import render_template, redirect, url_for, flash, request
 from flask_login import login_user, current_user, logout_user, login_required
 
@@ -57,6 +57,9 @@ def comment():
     prod_id = request.args.get('prod_id', type=int)
     product = db.session.execute(db.select(Product).where(Product.id == prod_id)).scalars().first()
     if form.validate_on_submit():
+        comment = Comment(rate=form.rate.data, text=form.text.data, product=product)
+        db.session.add(comment)
+        db.session.commit()
         return redirect(url_for('catalog'))
     return render_template('comment.html', form=form, product=product, with_navbar=True)
 
