@@ -2,8 +2,8 @@ from project import db
 from project.models import User
 import re
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, EmailField, BooleanField, SubmitField, ValidationError
-from wtforms.validators import Length, DataRequired, EqualTo, InputRequired
+from wtforms import StringField, PasswordField, EmailField, BooleanField, SubmitField, ValidationError, IntegerField
+from wtforms.validators import Length, DataRequired, EqualTo, InputRequired, NumberRange
 
 class RegistrationForm(FlaskForm):
     username = StringField('Username', validators=[Length(min=6, max=20), DataRequired()])
@@ -31,3 +31,7 @@ class LogInForm(FlaskForm):
     password = PasswordField('Password', validators=[DataRequired()])
     remember_me = BooleanField('Remember me')
     log_in = SubmitField('Log In')
+
+class CommentForm(FlaskForm):
+    text = StringField('Comment text', validators=[DataRequired(), Length(min=1, max=100)])
+    rate = IntegerField('Rate', validators=[DataRequired()])

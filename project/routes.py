@@ -1,5 +1,5 @@
 from project import app, db, bcrypt
-from project.forms import RegistrationForm, LogInForm
+from project.forms import RegistrationForm, LogInForm, CommentForm
 from project.models import User, Product
 from flask import render_template, redirect, url_for, flash, request
 from flask_login import login_user, current_user, logout_user, login_required
@@ -47,8 +47,9 @@ def account():
 def catalog():
     page = request.args.get('page', 1, type=int)
     products = db.paginate(db.select(Product), per_page=2, page=page)
+    form = CommentForm()
     # TODO if no products exist then another page
-    return render_template('catalog.html', products=products, with_navbar=True)
+    return render_template('catalog.html', products=products, with_navbar=True, form=form)
 
 @app.route('/')
 def main_page():
