@@ -34,4 +34,5 @@ class LogInForm(FlaskForm):
 
 class CommentForm(FlaskForm):
     text = StringField('Comment text', validators=[DataRequired(), Length(min=1, max=100)])
-    rate = IntegerField('Rate', validators=[DataRequired()])
+    rate = IntegerField('Rate')
+    submit = SubmitField('Submit')

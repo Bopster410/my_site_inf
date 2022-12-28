@@ -14,12 +14,11 @@
                         <div class="card-body">
                             <h3 class="card-title mb-4">{{ product.title }}</h3>
                             <p class="card-text">{{ product.description }}</p>
-                            {{ form.text }}
-                            {{ form.rate(class="form-range", type="range", min=1, max=5, step=1) }}
+                            <a href="{{ url_for('comment', prod_id=product.id) }}" class="btn btn-dark">Add comment</a>
                         </div>
                     </div>
                     <div class="col-md-2">
-                        <div class="card-footer text-center">
+                        <div class="card-footer text-center h-100">
                             <h4 class="card-title mt-5 mb-4">{{ product.price }}</h4>
                             <button type="button" class="btn btn-dark btn-lg mb-3 mt-auto w-100">Add to cart</button>
                         </div>

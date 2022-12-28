@@ -47,9 +47,18 @@ def account():
 def catalog():
     page = request.args.get('page', 1, type=int)
     products = db.paginate(db.select(Product), per_page=2, page=page)
-    form = CommentForm()
     # TODO if no products exist then another page
-    return render_template('catalog.html', products=products, with_navbar=True, form=form)
+    return render_template('catalog.html', products=products, with_navbar=True)
+
+@app.route('/comment', methods=['POST', 'GET'])
+@login_required
+def comment():
+    form = CommentForm()
+    prod_id = request.args.get('prod_id', type=int)
+    product = db.session.execute(db.select(Product).where(Product.id == prod_id)).scalars().first()
+    if form.validate_on_submit():
+        return redirect(url_for('catalog'))
+    return render_template('comment.html', form=form, product=product, with_navbar=True)
 
 @app.route('/')
 def main_page():

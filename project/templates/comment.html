@@ -1,0 +1,28 @@
+{% extends 'template.html' %}
+{% block body %}
+<div class="container mt-2">
+    <div class="row">
+        <div class="col">
+            <div class="card">
+                <div class="card-body">
+                    <div class="card-title"><h2>Add a comment</h2></div>
+                    <form method="post">
+                        {{ form.csrf_token }}
+                        {{ form.text(class="form-control") }}
+                        {{ form.rate(class="form-range", type="range", min=1, max=5, step=1) }}
+                        {{ form.submit }}
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card">
+                <div class="card-body">
+                    <div class="card-title"><h2>{{ product.title }}</h2></div>
+                    <img src="{{ url_for('static', filename=product.image) }}" alt="">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
