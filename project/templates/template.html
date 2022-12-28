@@ -12,6 +12,18 @@
             --navbar-height: 6vh;
             --carousel-height: calc(100vh - var(--navbar-height));
         }
+
+        .main_car_img {
+            object-fit: cover;
+            object-position: top;
+            height: var(--carousel-height);
+        }
+
+        .catalog_img {
+            object-fit: cover;
+            object-position: center;
+        }
+
         .pagination {
             --bs-link-color: #fff;
             --bs-pagination-focus-box-shadow: 0 0 0 0.25rem rgba(60, 70, 73, .5);
@@ -24,30 +36,6 @@
             --bs-pagination-focus-bg: #16181a;
             --bs-pagination-focus-color: #fff;
             --bs-link-hover-color: #fff;
-        }
-
-        /* .pagination > li > a {
-            color: white;
-            background-color: #424649;
-        }
-        
-        .pagination > li > a:focus,
-        .pagination > li > a:hover {
-            color: white;
-            background-color: #212529;
-        }
-        
-        .pagination > li.active > a {
-            color: white;
-            background-color: #212529;
-            border-color: #000000;
-            border-radius: 2px;
-        } */
-
-        .main_car_img {
-            object-fit: cover;
-            object-position: top;
-            height: var(--carousel-height);
         }
     </style>
 </head>
