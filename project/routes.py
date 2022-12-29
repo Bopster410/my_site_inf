@@ -88,7 +88,7 @@ def comment():
     prod_id = request.args.get('prod_id', type=int)
     product = db.session.execute(db.select(Product).where(Product.id == prod_id)).scalars().first()
     if form.validate_on_submit():
-        comment = Comment(rate=form.rate.data, text=form.text.data, product=product)
+        comment = Comment(rate=form.rate.data, text=form.text.data, product=product, author=current_user)
         db.session.add(comment)
         db.session.commit()
         return redirect(url_for('catalog'))

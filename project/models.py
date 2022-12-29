@@ -11,6 +11,7 @@ class User(db.Model, UserMixin):
     email = db.Column(db.String(40), nullable=False, unique=True)
     image = db.Column(db.String(20), nullable=False, default='default.jpg')
     password = db.Column(db.String(20), nullable=False)
+    comments = db.relationship('Comment', backref='author', lazy=True)
 
 class Product(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -25,3 +26,4 @@ class Comment(db.Model):
     rate = db.Column(db.Integer, nullable=False)
     text = db.Column(db.String(100), nullable=False)
     product_id = db.Column(db.Integer, db.ForeignKey('product.id'), nullable=False)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)

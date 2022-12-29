@@ -21,10 +21,20 @@
                                 {% for comment in product.comments %}
                                     <div class="card">
                                         <div class="card-body">
-                                            <p class="card-text">{{ comment.text }}</p>
+                                            <div class="row">
+                                                <div class="col-md-2">
+                                                    <img class="rounded-circle d-block w-100" src="{{ url_for('static', filename='profile_pics/' + comment.author.image) }}" alt="">
+                                                </div>
+                                                <div class="col">
+                                                    <h4>{{ comment.author.username }}</h4>
+                                                </div>
+                                                <div class="col">
+                                                    <p class="card-text">{{ comment.text }}</p>
+                                                </div>
+                                            </div>
                                         </div>
                                         <div class="card-footer">
-                                            <h3>{{ comment.rate }} / 5</h3>
+                                            <h4>{{ comment.rate }} / 5</h4>
                                         </div>
                                     </div>
                                 {% endfor %}

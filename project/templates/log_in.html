@@ -26,10 +26,16 @@
         <div class="mt-4 mb-3">
             {{ form.log_in(class="btn btn-primary btn-md w-100")}}
         </div>
-        
-        <div class="form-check form-check-reverse me-4">
-                {{ form.remember_me(class="form-check-input") }}
-                {{ form.remember_me.label(class="form-check-label") }}
+        <div class="row">
+            <div class="col">
+                <a href="{{ url_for('registration') }}">Don't have an account?</a>
+            </div>
+            <div class="col">
+                <div class="form-check form-check-reverse me-4">
+                        {{ form.remember_me(class="form-check-input") }}
+                        {{ form.remember_me.label(class="form-check-label") }}
+                </div>
+            </div>
         </div>
     </form>
 </div>
