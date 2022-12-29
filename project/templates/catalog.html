@@ -1,7 +1,12 @@
 {% extends 'template.html' %}
 {% block body %}
 <div class="container">
-    <h2 class="m-4 text-center">Pick your favorite!</h2>
+    {% if products.total %}
+        <h2 class="m-4 text-center">Pick your favorite! {{ products }}</h2>
+    {% else %}
+        <h2 class="m-4 text-center">No products today, sorry!</h2>
+    {% endif %}
+
     <div class="vstack gap-3">
         {% for product in products %}
             <div class="card">
