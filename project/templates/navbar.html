@@ -5,10 +5,10 @@
             <li class="nav-item">
                 <a href="{{ url_for('catalog') }}" class="nav-link" aria-current="page">Catalog</a>
             </li>
-            <li class="nav-item">
-                <a href="#" class="nav-link">test</a>
-            </li>
             {% if current_user.username == 'admin' %}
+                <li class="nav-item">
+                    <a href="{{ url_for('delete_product') }}" class="nav-link">Delete product</a>
+                </li>
                 <li class="nav-item">
                     <a href="{{ url_for('add_product') }}" class="nav-link">Add product</a>
                 </li>

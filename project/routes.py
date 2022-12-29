@@ -1,5 +1,5 @@
 from project import app, db, bcrypt
-from project.forms import RegistrationForm, LogInForm, CommentForm, UpdateAccountForm, AddProductForm
+from project.forms import RegistrationForm, LogInForm, CommentForm, UpdateAccountForm, AddProductForm, DeleteProductForm
 from project.models import User, Product, Comment
 from flask import render_template, redirect, url_for, flash, request
 from flask_login import login_user, current_user, logout_user, login_required
@@ -77,7 +77,7 @@ def account():
 @app.route('/catalog')
 def catalog():
     page = request.args.get('page', 1, type=int)
-    products = db.paginate(db.select(Product), per_page=2, page=page)
+    products = db.paginate(db.select(Product), per_page=3, page=page)
     # TODO if no products exist then another page
     return render_template('catalog.html', products=products, with_navbar=True)
 
@@ -95,6 +95,7 @@ def comment():
     return render_template('comment.html', form=form, product=product, with_navbar=True)
 
 @app.route('/catalog/add', methods=['GET', 'POST'])
+@login_required
 def add_product():
     if current_user.username == 'admin':
         form = AddProductForm()
@@ -104,10 +105,25 @@ def add_product():
             db.session.add(product)
             db.session.commit()
             flash('New product added successfully!', 'success')
-            return redirect(url_for('catalog'))
-        return render_template('add_product.html', form=form)
+            return redirect(url_for('add_product'))
+        return render_template('add_product.html', form=form, with_navbar=True)
     else:
-        redirect(url_for('main_page'))
+        return redirect(url_for('main_page'))
+
+@app.route('/catalog/delete', methods=['GET', 'POST'])
+@login_required
+def delete_product():
+    if current_user.username == 'admin':
+        form = DeleteProductForm()
+        if form.validate_on_submit():
+            title = form.title_to_delete.data
+            product_to_delete = db.session.execute(db.select(Product).where(Product.title == title)).scalars().first()
+            db.session.delete(product_to_delete)
+            db.session.commit()
+            return redirect(url_for('delete_product'))
+        return render_template('delete_product.html', form=form, with_navbar=True)
+    else:
+        return redirect(url_for('main_page'))
 
 
 @app.route('/')

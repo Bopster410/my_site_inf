@@ -69,4 +69,8 @@ class AddProductForm(FlaskForm):
     price = IntegerField('Price', validators=[DataRequired()])
     image = FileField('Product picture', validators=[FileAllowed(['jpg', 'png'])])
     submit = SubmitField('Add')
-    
+
+
+class DeleteProductForm(FlaskForm):
+    title_to_delete = StringField('ID', validators=[DataRequired(), Length(min=6, max=20)])
+    delete = SubmitField('Delete')
