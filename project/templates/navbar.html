@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-sm navbar-dark bg-dark" style="height:var(--navbar-height);">
     <div class="container-sm">
-        <a href="{{ url_for('main_page') }}" class="navbar-brand">EPIC</a>
+        <a href="{{ url_for('main_page') }}" class="navbar-brand">HOME</a>
         <ul class="navbar-nav me-auto">
             <li class="nav-item">
                 <a href="{{ url_for('catalog') }}" class="nav-link" aria-current="page">Catalog</a>
@@ -17,10 +17,11 @@
         {% if current_user.is_authenticated %}
             <div class="navbar-nav dropdown">
                 <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"
-                    aria-expanded="false">Account</a>
+                aria-expanded="false">Account</a>
                 <ul class="dropdown-menu">
                     <li>
                         <a href="{{ url_for('account') }}" class="dropdown-item">Profile page</a>
+                        <a href="{{ url_for('cart') }}" class="dropdown-item">Cart</a>
                         <a href="{{ url_for('log_out') }}" class="dropdown-item">Log Out</a>
                     </li>
                 </ul>
@@ -40,5 +41,3 @@
         {% endif %}
     </div>
 </nav>
-
-<h1 class="position-absolute top-50 start-50 translate-middle">Hello!!!</h1>

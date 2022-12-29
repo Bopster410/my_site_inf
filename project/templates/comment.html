@@ -10,16 +10,16 @@
                         {{ form.csrf_token }}
                         {{ form.text(class="form-control") }}
                         {{ form.rate(class="form-range", type="range", min=1, max=5, step=1) }}
-                        {{ form.submit }}
+                        {{ form.submit(class="btn btn-dark") }}
                     </form>
                 </div>
             </div>
         </div>
-        <div class="col">
+        <div class="col-sm-3">
             <div class="card">
                 <div class="card-body">
                     <div class="card-title"><h2>{{ product.title }}</h2></div>
-                    <img src="{{ url_for('static', filename=product.image) }}" alt="">
+                    <img src="{{ url_for('static', filename='products/' + product.image) }}" class="d-block w-100" alt="">
                 </div>
             </div>
         </div>

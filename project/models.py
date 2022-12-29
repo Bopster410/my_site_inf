@@ -12,6 +12,7 @@ class User(db.Model, UserMixin):
     image = db.Column(db.String(20), nullable=False, default='default.jpg')
     password = db.Column(db.String(20), nullable=False)
     comments = db.relationship('Comment', backref='author', lazy=True)
+    products_in_cart = db.relationship('Product', backref='owner', lazy=True)
 
 class Product(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -20,6 +21,7 @@ class Product(db.Model):
     image = db.Column(db.String(20), nullable=False)
     price = db.Column(db.Integer, nullable=False)
     comments = db.relationship('Comment', backref='product', lazy=True)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
 
 class Comment(db.Model):
     id = db.Column(db.Integer, primary_key=True)

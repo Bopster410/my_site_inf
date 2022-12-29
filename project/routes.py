@@ -78,7 +78,10 @@ def account():
 def catalog():
     page = request.args.get('page', 1, type=int)
     products = db.paginate(db.select(Product), per_page=3, page=page)
-    # TODO if no products exist then another page
+    product_to_cart = db.session.execute(db.select(Product).where(Product.id == request.args.get('product_id'))).scalars().first()
+    if product_to_cart:
+        product_to_cart.owner = current_user
+        db.session.commit()
     return render_template('catalog.html', products=products, with_navbar=True)
 
 @app.route('/comment', methods=['POST', 'GET'])
@@ -125,6 +128,10 @@ def delete_product():
     else:
         return redirect(url_for('main_page'))
 
+@app.route('/cart')
+@login_required
+def cart():
+    return render_template('cart.html', with_navbar=True)
 
 @app.route('/')
 def main_page():
