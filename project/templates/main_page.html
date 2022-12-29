@@ -1,33 +1,35 @@
 {% extends 'template.html' %}
 {% block body %}
-<div id="MainCarousel" class="carousel slide" data-bs-ride="carousel">
+<div id="MainCarousel" class="carousel slide carousel-fade" data-bs-ride="carousel">
     <div class="carousel-inner bg-dark">
-        <div class="carousel-indicators">
+        <div class="carousel-indicators mt-1 top-0">
             <button type="button" data-bs-target="#MainCarousel" data-bs-slide-to="0" aria-label="Slide 1" class="active" aria-current="true"></button>
             <button type="button" data-bs-target="#MainCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
             <button type="button" data-bs-target="#MainCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
         </div>
         <div class="carousel-item active">
             <div style="min-height:var(--carousel-height);">
-                <img src="" class="main_car_img d-block w-100" alt="">
-                <div class="carousel-caption d-md-block">
-                    <h2>epic</h2>
+                <img src="{{ url_for('static', filename='carousel_pics/shawarma1.jpg') }}" class="main_car_img d-block w-100" alt="">
+                <div class="carousel-caption d-none d-lg-block text-end top-0 mt-5">
+                    <h1>Amazing and unique flavours</h1>
+                    <p class="mt-3 carousel-p">Try our brand new Nachos shawarma,<br>innovative shawarma and small shawarma</p>
                 </div>
             </div>
         </div>
         <div class="carousel-item">
             <div style="min-height:var(--carousel-height);">
-                <img src="" class="main_car_img d-block w-100" alt="">
-                <div class="carousel-caption d-md-block">
-                    <h2>epic 2</h2>
+                <img src="{{ url_for('static', filename='carousel_pics/shawarma2.jpg') }}" class="main_car_img d-block w-100" alt="">
+                <div class="carousel-caption d-none d-lg-block top-0 mt-2">
+                    <h1>Only on our site</h1>
                 </div>
             </div>
         </div>
         <div class="carousel-item">
             <div style="min-height:var(--carousel-height);">
-                <img src="" class="main_car_img d-block w-100" alt="">
-                <div class="carousel-caption d-md-block">
-                    <h2>epic 3</h2>
+                <img src="{{ url_for('static', filename='carousel_pics/shawarma3.jpg') }}" class="main_car_img d-block w-100" alt="">
+                <div class="carousel-caption d-none d-lg-block text-start top-0 mt-5">
+                    <h1>Unsurpassed classic</h1>
+                    <p class="mt-3 carousel-p">Delious shawarma with cheese,<br>short shawarma and shawarma classic</p>
                 </div>
             </div>
         </div>
