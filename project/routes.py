@@ -3,6 +3,7 @@ from project.forms import RegistrationForm, LogInForm, CommentForm, UpdateAccoun
 from project.models import User, Product, Comment
 from flask import render_template, redirect, url_for, flash, request
 from flask_login import login_user, current_user, logout_user, login_required
+import secrets, os
 
 @app.route('/reg', methods=['GET', 'POST'])
 def registration():
@@ -38,11 +39,24 @@ def log_out():
     logout_user()
     return redirect(url_for('main_page'))
 
+def save_image(form_image):
+    # Generating a new name image_fn
+    random_hex = secrets.token_hex(8)
+    _, f_ext = os.path.splitext(form_image.filename)
+    image_fn = random_hex + f_ext
+    # Svaing an image in profile_pics/
+    image_path = os.path.join(app.root_path, 'static/profile_pics', image_fn)
+    form_image.save(image_path)
+    return image_fn
+
 @app.route('/account', methods=['GET', 'POST'])
 @login_required
 def account():
     form = UpdateAccountForm()
     if form.validate_on_submit():
+        if form.image.data:
+            image_file = save_image(form.image.data)
+            current_user.image = image_file
         current_user.username = form.username.data
         current_user.email = form.email.data
         db.session.commit()
