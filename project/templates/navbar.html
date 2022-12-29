@@ -8,9 +8,11 @@
             <li class="nav-item">
                 <a href="#" class="nav-link">test</a>
             </li>
-            <li class="nav-item">
-                <a href="#" class="nav-link">test</a>
-            </li>
+            {% if current_user.username == 'admin' %}
+                <li class="nav-item">
+                    <a href="{{ url_for('add_product') }}" class="nav-link">Add product</a>
+                </li>
+            {% endif %}
         </ul>
         {% if current_user.is_authenticated %}
             <div class="navbar-nav dropdown">
@@ -19,7 +21,6 @@
                 <ul class="dropdown-menu">
                     <li>
                         <a href="{{ url_for('account') }}" class="dropdown-item">Profile page</a>
-                        <a href="#" class="dropdown-item">cccc</a>
                         <a href="{{ url_for('log_out') }}" class="dropdown-item">Log Out</a>
                     </li>
                 </ul>

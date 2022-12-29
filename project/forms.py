@@ -61,3 +61,12 @@ class CommentForm(FlaskForm):
     text = StringField('Comment text', validators=[DataRequired(), Length(min=1, max=100)])
     rate = IntegerField('Rate')
     submit = SubmitField('Submit')
+
+
+class AddProductForm(FlaskForm):
+    title = StringField('Title', validators=[Length(min=6, max=20), DataRequired()])
+    description = StringField('Description', validators=[Length(min=6, max=100), DataRequired()]) 
+    price = IntegerField('Price', validators=[DataRequired()])
+    image = FileField('Product picture', validators=[FileAllowed(['jpg', 'png'])])
+    submit = SubmitField('Add')
+    

@@ -1,5 +1,5 @@
 from project import app, db, bcrypt
-from project.forms import RegistrationForm, LogInForm, CommentForm, UpdateAccountForm
+from project.forms import RegistrationForm, LogInForm, CommentForm, UpdateAccountForm, AddProductForm
 from project.models import User, Product, Comment
 from flask import render_template, redirect, url_for, flash, request
 from flask_login import login_user, current_user, logout_user, login_required
@@ -40,13 +40,13 @@ def log_out():
     logout_user()
     return redirect(url_for('main_page'))
 
-def save_image(form_image):
+def save_image(form_image, path):
     # Generating a new name image_fn
     random_hex = secrets.token_hex(8)
     _, f_ext = os.path.splitext(form_image.filename)
     image_fn = random_hex + f_ext
     # Resizing and saving an image in profile_pics
-    image_path = os.path.join(app.root_path, 'static/profile_pics', image_fn)
+    image_path = os.path.join(app.root_path, f'static/{path}', image_fn)
     output_size = (250, 250) # TODO make squared image
     i = Image.open(form_image)
     i.thumbnail(output_size)
@@ -61,7 +61,7 @@ def account():
         if form.image.data:
             if current_user.image != 'default.jpg':
                 os.remove(os.path.join(app.root_path, 'static/profile_pics', current_user.image))
-            image_file = save_image(form.image.data)
+            image_file = save_image(form.image.data, 'profile_pics')
             current_user.image = image_file
         current_user.username = form.username.data
         current_user.email = form.email.data
@@ -93,6 +93,22 @@ def comment():
         db.session.commit()
         return redirect(url_for('catalog'))
     return render_template('comment.html', form=form, product=product, with_navbar=True)
+
+@app.route('/catalog/add', methods=['GET', 'POST'])
+def add_product():
+    if current_user.username == 'admin':
+        form = AddProductForm()
+        if form.validate_on_submit():
+            image_file = save_image(form.image.data, 'products')
+            product = Product(title=form.title.data, description=form.description.data, price=form.price.data, image=image_file)
+            db.session.add(product)
+            db.session.commit()
+            flash('New product added successfully!', 'success')
+            return redirect(url_for('catalog'))
+        return render_template('add_product.html', form=form)
+    else:
+        redirect(url_for('main_page'))
+
 
 @app.route('/')
 def main_page():
