@@ -1,5 +1,3 @@
 flask_venv/
 instance/
-project/static
-sql/
 **__pycache__

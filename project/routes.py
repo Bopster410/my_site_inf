@@ -47,7 +47,7 @@ def save_image(form_image, path):
     image_fn = random_hex + f_ext
     # Resizing and saving an image in profile_pics
     image_path = os.path.join(app.root_path, f'static/{path}', image_fn)
-    output_size = (250, 250) # TODO make squared image
+    output_size = (250, 250) 
     i = Image.open(form_image)
     i.thumbnail(output_size)
     i.save(image_path)
