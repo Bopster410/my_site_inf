@@ -19,7 +19,7 @@
                     <div class="card-body">
                         <h3 class="card-title mb-4">{{ product.title }}</h3>
                         <p class="card-text">{{ product.description }}</p>
-                        <a href="{{ url_for('comment', prod_id=product.id) }}" class="btn btn-dark">Add comment</a>
+                        <a href="{{ url_for('comments.comment', prod_id=product.id) }}" class="btn btn-dark">Add comment</a>
                         {% if product.comments %}
                         <button class="btn btn-dark" type="button" data-bs-toggle="collapse"
                             data-bs-target="#commentSection{{ product.id }}" aria-controls="commentSection"> Show
@@ -55,9 +55,9 @@
                     <div class="card-footer text-center h-100">
                         <h4 class="card-title mt-5 mb-4">{{ product.price }}</h4>
                         {% if product.user_id %}
-                            <a href="{{ url_for('catalog', product_id=product.id) }}" class="btn btn-dark btn-lg mb-3 mt-auto w-100 disabled">Add to cart</a>
+                            <a href="{{ url_for('products.catalog', product_id=product.id) }}" class="btn btn-dark btn-lg mb-3 mt-auto w-100 disabled">Add to cart</a>
                         {% else %}
-                            <a href="{{ url_for('catalog', product_id=product.id) }}" class="btn btn-dark btn-lg mb-3 mt-auto w-100">Add to cart</a>
+                            <a href="{{ url_for('products.catalog', product_id=product.id) }}" class="btn btn-dark btn-lg mb-3 mt-auto w-100">Add to cart</a>
                         {% endif %}
                     </div>
                 </div>
@@ -75,7 +75,7 @@
                 {% endif %}
 
                 {% if page_num %}
-                <a class="page-link mx-1" href="{{ url_for('catalog', page=page_num) }}">{{ page_num }}</a>
+                <a class="page-link mx-1" href="{{ url_for('products.catalog', page=page_num) }}">{{ page_num }}</a>
                 {% else %}
                 <span class="mx-2" style="font-weight: 700;"> . . . </span>
                 {% endif %}
